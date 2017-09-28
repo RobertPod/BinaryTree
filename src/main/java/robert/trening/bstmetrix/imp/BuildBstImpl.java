@@ -43,4 +43,35 @@ public class BuildBstImpl implements BuildBst, Serializable {
         }
         return root;
     }
+
+    @Override
+    public BinaryTree buildBstRecursiveFunction(int[] values) {
+        if (values == null) return null;
+        int length = values.length;
+        if (length == 0) return null;
+//        BinaryTree root = new BinaryTree(values[0]);
+        BinaryTree root = null;
+        for (int value : values) {
+            root = addNode(root, value);
+        }
+
+        return root;
+    }
+
+    private BinaryTree addNode(BinaryTree node, int value) {
+        if (node == null) {
+            node = new BinaryTree(value);
+        } else if (value < node.getValue()) {
+            if (node.getLeft() != null) {
+                node.setLeft(addNode(node.getLeft(), value));
+            } else {
+                node.setLeft(new BinaryTree(value));
+            }
+        } else if (node.getRight() != null) {
+            node.setRight(addNode(node.getRight(), value));
+        } else {
+            node.setRight(new BinaryTree(value));
+        }
+        return node;
+    }
 }

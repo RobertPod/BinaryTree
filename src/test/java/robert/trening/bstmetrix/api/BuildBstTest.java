@@ -30,6 +30,7 @@ class BuildBstTest {
         int[] values = {11};
 
         BinaryTree root = buildTree.buildBst(values);
+        assertNotEquals(null, root);
         assertEquals(11, root.getValue());
         assertEquals(null, root.getLeft());
         assertEquals(null, root.getRight());
@@ -41,10 +42,52 @@ class BuildBstTest {
         int[] values = {11, 6, 12, 33};
 
         BinaryTree root = buildTree.buildBst(values);
+        assertNotEquals(null, root);
         assertEquals(11, root.getValue());
         assertEquals(6, root.getLeft().getValue());
         assertEquals(12, root.getRight().getValue());
         assertEquals(33, root.getRight().getRight().getValue());
     }
 
+    @Test
+    void buildBstRecursiveFunctionNull() {
+        BuildBst buildTree = new BuildBstImpl();
+
+        BinaryTree root = buildTree.buildBstRecursiveFunction(null);
+        assertEquals(null, root);
+    }
+
+    @Test
+    void buildBstRecursiveFunctionEmpty() {
+        BuildBst buildTree = new BuildBstImpl();
+        int[] values = new int[0];
+
+        BinaryTree root = buildTree.buildBstRecursiveFunction(values);
+        assertEquals(null, root);
+    }
+
+    @Test
+    void buildBstRecursiveFunctionOne() {
+        BuildBst buildTree = new BuildBstImpl();
+        int[] values = {11};
+
+        BinaryTree root = buildTree.buildBstRecursiveFunction(values);
+        assertNotEquals(null, root);
+        assertEquals(11, root.getValue());
+        assertEquals(null, root.getLeft());
+        assertEquals(null, root.getRight());
+    }
+
+    @Test
+    void buildBstRecursiveFunctionTree() {
+        BuildBst buildTree = new BuildBstImpl();
+        int[] values = {11, 6, 12, 33};
+
+        BinaryTree root = buildTree.buildBstRecursiveFunction(values);
+        assertNotEquals(null, root);
+        assertEquals(11, root.getValue());
+        assertEquals(6, root.getLeft().getValue());
+        assertEquals(12, root.getRight().getValue());
+        assertEquals(33, root.getRight().getRight().getValue());
+    }
 }
